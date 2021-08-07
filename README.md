@@ -2,23 +2,22 @@
 
 ## Como executar
 
-1. Execute o comando `make config`. Ao fazer isso, os arquivos `.py` serão definidos como executáveis. Esse comando Makefile executa os seguintes comandos:
-
-```make
-chmod +x svc_arm.py
-chmod +x cln_arm.py
-chmod +x svc_comp.py
-chmod +x cln_comp.py
-```
-
-2. Para executar os servidores e clientes, os comandos `make` são iguais aos descritos na documentação do trabalho:
+Para executar os servidores e clientes, os comandos `make` são iguais aos descritos na documentação do trabalho:
 
 - `make run_serv_arm arg=<port>`: executa o servidor da primeira parte, no porto especificado em \<port>.
 - `make run_cli_arm arg=<addr>`: executa o cliente da primeira parte, que se conecta ao servidor o qual está escutando no endereço especificado em \<addr>.
 - `make run_serv_comp arg1=<port> arg2=<addr1> arg3=<addr2>`: executa o servidor da segunda parte no porto especificado em \<port>, e executa os servidores do Siga no endereço \<addr1> e Matrícula no endereço \<addr2>.
 - `make run_cli_comp arg=<addr>`: executa o cliente da segunda parte, que se conecta ao servidor o qual está escutando no endereço especificado em \<addr>.
 
-## Ressalvas
+## Pontos de atenção
+
+Todas as stubs necessárias já estão criadas. Caso, por algum motivo, elas sejam deletadas, execute os seguintes comandos para recriá-las:
+
+```zsh
+python -m grpc_tools.protoc -I=./proto --python_out=. --grpc_python_out=. ./proto/arm.proto
+
+python -m grpc_tools.protoc -I=./proto --python_out=. --grpc_python_out=. ./proto/comp.proto
+```
 
 No servidor/cliente implementados na primeira parte, não há persistência de dados: uma vez que o servidor é encerrado, todos os registros daquela seção são descartados.
 
