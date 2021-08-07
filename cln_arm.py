@@ -7,7 +7,7 @@ import sys
 
 
 def run(addr):
-    # stablishes communication with server running on address 'addr'
+    # establishes communication with server running on address 'addr'
     with grpc.insecure_channel(addr) as channel:
         # gets stub structure defined in protobuf file
         stub = arm_pb2_grpc.StoreDataServiceStub(channel)
@@ -41,10 +41,10 @@ def run(addr):
                     print(request.response)
                     break
                 else:
-                    print("invalid command")
+                    eprint("invalid command")
             except KeyboardInterrupt:
                 # closes client when user ctrl+c
-                print("closing client...")
+                # print("keyboard interrupt, closing client...")
                 channel.unsubscribe(close)
                 exit()
 
@@ -53,6 +53,11 @@ def run(addr):
 
 def close(channel):
     channel.close()
+
+
+# eprint prints in stderr
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 if __name__ == "__main__":

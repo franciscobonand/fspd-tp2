@@ -51,12 +51,12 @@ def serve(port):
     server.add_insecure_port(f"[::]:{port}")
     server.start()
     try:
-        print(f"server listening on port {port}")
         while not quit:
             continue
     except KeyboardInterrupt:
         # closes server when user ctrl+c
-        print("closing server...")
+        # print("keyboard interrupt, closing server...")
+        pass
 
     server.stop(0)
 
