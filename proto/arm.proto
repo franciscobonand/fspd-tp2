@@ -1,0 +1,29 @@
+// python3 -m grpc_tools.protoc -I=./proto --python_out=. --grpc_python_out=. ./proto/arm.proto
+syntax = "proto3";
+
+message InsertRequest {
+    int32 key = 1;
+    string description = 2;
+    int32 value = 3;
+}
+
+message GetRequest {
+    int32 key = 1;
+}
+
+message TerminateRequest {}
+
+message ServerResponse {
+    int32 response = 1;
+}
+
+message ServerGetResponse {
+    string description = 1;
+    int32 value = 2;
+}
+
+service StoreDataService {
+    rpc Insert(InsertRequest) returns (ServerResponse);
+    rpc Get(GetRequest) returns (ServerGetResponse);
+    rpc Terminate(TerminateRequest) returns (ServerResponse);
+}

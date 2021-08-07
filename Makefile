@@ -6,3 +6,6 @@ run_cli_arm:
 #      ./svc_comp.py $(arg1) $(arg2) $(arg3)
 # run_cli_comp:
 #      ./cln_comp.py $(arg)
+
+clean:
+	rm -rf __pycache__
