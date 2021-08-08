@@ -28,7 +28,7 @@ def run(addr):
 
                 # handles terminate command and closes client
                 elif cmd[0] == "T" and len(cmd) == 1:
-                    req = stub.Terminate(comp_pb2.TerminateRequest())
+                    req = stub.Terminate(comp_pb2.CompTerminateRequest())
                     print(req.response)
                     break
                 else:

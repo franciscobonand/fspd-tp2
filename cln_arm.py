@@ -42,15 +42,14 @@ def run(addr):
                     break
                 else:
                     eprint("invalid command")
-            except KeyboardInterrupt:
+            except:
                 # closes client when user ctrl+c
-                # print("keyboard interrupt, closing client...")
+                print("error while sending request, closing client...")
                 channel.unsubscribe(close)
                 exit()
 
+
 # close closes the client channel
-
-
 def close(channel):
     channel.close()
 

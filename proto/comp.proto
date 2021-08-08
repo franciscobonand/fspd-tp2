@@ -1,52 +1,24 @@
 // python3 -m grpc_tools.protoc -I=./proto --python_out=. --grpc_python_out=. ./proto/comp.proto
 syntax = "proto3";
 
-message TerminateRequest {}
-
-message ServerResponse {
-    int32 response = 1;
-}
-
 message MainRequest {
     int32 key = 1;
 }
 
 message MainResponse {
     string nome = 1;
-    uint32 matr = 2;
+    int32 matr = 2;
     string curso = 3;
     int32 cred = 4;
 }
 
-message SigaRequest {
-    int32 key = 1;
-}
+message CompTerminateRequest {}
 
-message SigaResponse {
-    string nome = 1;
-    uint32 matr = 2;
-}
-
-message MatriculaRequest {
-    uint32 matr = 1;
-}
-
-message MatriculaResponse {
-    string curso = 1;
-    int32 cred = 2;
+message CompServerResponse {
+    int32 response = 1;
 }
 
 service MainService {
     rpc Get(MainRequest) returns (MainResponse);
-    rpc Terminate(TerminateRequest) returns (ServerResponse);
-}
-
-service SigaService {
-    rpc Get(SigaRequest) returns (SigaResponse);
-    rpc Terminate(TerminateRequest) returns (ServerResponse);
-}
-
-service MatriculaService {
-    rpc Get(MatriculaRequest) returns (MatriculaResponse);
-    rpc Terminate(TerminateRequest) returns (ServerResponse);
+    rpc Terminate(CompTerminateRequest) returns (CompServerResponse);
 }
